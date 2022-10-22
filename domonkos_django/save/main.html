@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magda Domonkos Ev.</title>
+    <script src="https://kit.fontawesome.com/efc4fff622.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'main/style.css'%}">
+    <link rel="shortcut icon" href="img/header.jpg">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet"> 
+    <!-- font-family: 'Nanum Gothic', sans-serif; CÍM -->
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> 
+    <!-- font-family: 'Josefin Sans', sans-serif; -->
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+    <!-- font-family: 'Inconsolata', monospace; láb -->
+
+</head>
+<body>
+
+    <!-- header -->
+    <div class="header-wrap">
+        <div class="header-content">
+            <h1 class="header-heading">
+                Magda Domonkos Egyéni válalkozó
+            </h1>
+            <div class="h-line"></div>
+            <h2 class="header-subheading">
+                Informatikai háttér szolgáltatások
+            </h2>
+        </div>
+    </div>
+    <!-- end of header -->
+
+    <!-- navbar -->
+    
+    <nav class="navbar">
+        <ul class="nav-main">
+            <li class="nav-list"><a class="nav inactive" href="#">Kezdő lap</a></li>
+            <li class="nav-list"><a class="nav" href="#">Rólam</a></li>
+            <li class="nav-list"><a class="nav" href="#">Elérhetőség</a></li>
+        </ul>
+        <ul class="social">
+            <li> <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a></li>
+        </ul>
+    </nav>
+
+    <!-- end of navbar -->
+
+    <!-- main -->
+
+    <div style="margin: 3rem">
+
+        <div class="rf-container">
+            <h3 class="rf-header">Értékelje Munkánkat!</h3>
+                <form class="rf-list" action="{% url 'submit_review' %}" method="POST">
+                {%csrf_token%}
+                <input class="rf-element" type="text" name="r_bname" placeholder="Cégnév (opcionális)">
+                <input class="rf-element" type="text" name="r_sname" placeholder="Vezetéknév" required>
+                <input class="rf-element" type="text" name="r_fname" placeholder="Keresztnév" required>
+                <textarea class="rf-element" name="r_message" rows="4" placeholder="Üzenet... (opcionális)" ></textarea>
+                <div class="star-container">
+                    <strong class="txtupper">Értékelés: </strong>
+                    <div class="stars">
+                            <input type="radio" name="rating" id="rating10" value="10" required /><label for="rating10" class="fas fa-star" title="10"></label>
+							<input type="radio" name="rating" id="rating9" value="9" required /><label for="rating9" class="fas fa-star" title="9"></label>
+							<input type="radio" name="rating" id="rating8" value="8" required /><label for="rating8" class="fas fa-star" title="8"></label>
+							<input type="radio" name="rating" id="rating7" value="7" required /><label for="rating7" class="fas fa-star" title="7"></label>
+							<input type="radio" name="rating" id="rating6" value="6" required /><label for="rating6" class="fas fa-star" title="6"></label>
+							<input type="radio" name="rating" id="rating5" value="5" required /><label for="rating5" class="fas fa-star" title="5"></label>
+							<input type="radio" name="rating" id="rating4" value="4" required /><label for="rating4" class="fas fa-star" title="4"></label>
+							<input type="radio" name="rating" id="rating3" value="3" required /><label for="rating3" class="fas fa-star" title="3"></label>
+							<input type="radio" name="rating" id="rating2" value="2" required /><label for="rating2" class="fas fa-star" title="2"></label>
+							<input type="radio" name="rating" id="rating1" value="1" required /><label for="rating1" class="fas fa-star" title="1"></label>
+                        
+                    </div>
+                </div>
+                <button class="rf-btn" type="submit">Küldés</button>
+                
+            </form>
+
+        </div>
+    </div>
+
+
+
+    <div style="margin: 3rem">
+        {%include 'includes/alert.html'%}
+        <div class="cf-container">
+            <h3 class="cf-header">Üzenjen nekünk!</h3>
+            <form class="cf-list" action="{% url 'contact_form' %}" method="POST">
+                {%csrf_token%}
+                {% comment %} https://formsubmit.co/28278c28849e5f9461c280ebb865b983 {% endcomment %}
+                <input class="cf-element" type="text" name="c_bname" placeholder="Cégnév (opcionális)">
+                <input class="cf-element" type="text" name="c_sname" placeholder="Vezetéknév" required>
+                <input class="cf-element" type="text" name="c_fname" placeholder="Keresztnév" required>
+                <input class="cf-element" type="email" name="c_email" placeholder="Email cím" required>
+                <input class="cf-element" type="text" name="c_pnumber" placeholder="Telefonszám" required>
+                <textarea class="cf-element" name="c_message" rows="4" placeholder="Üzenet..." required></textarea>
+                {% comment %} <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="http://127.0.0.1:5500/main.html">
+                <input type="hidden" name="_template" value="table"> {% endcomment %}
+                <button class="cf-btn" type="submit">Küldés</button>
+            </form>
+
+        </div>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt non itaque dolor soluta debitis accusamus quidem totam, autem modi minus est molestiae voluptate tempore? Tempore, rem suscipit esse reprehenderit officiis beatae blanditiis in modi dolore sint, corporis culpa placeat! Ea, suscipit! Sint labore esse id nam voluptatem nemo perferendis sit culpa dignissimos ab temporibus saepe, facere deleniti, provident quia rerum veniam in odio. Culpa ipsa quibusdam debitis in minima inventore repellat eligendi, perferendis minus, amet neque tempore rerum quod officiis magni aperiam eveniet nemo! Dolorum eveniet facere quo natus explicabo velit et reiciendis! Perspiciatis, dolorem. Beatae quia magni incidunt, deserunt ipsam dolore architecto. Repellendus eius aliquid animi ipsam fuga! Perferendis est nesciunt dolores quae iusto obcaecati eos voluptate, beatae tempore quidem dolorem hic nemo quisquam! Necessitatibus, natus? Ea alias facilis incidunt cupiditate. Autem deserunt perspiciatis nostrum sed harum aspernatur vitae! Aperiam accusamus eius quasi eum assumenda blanditiis ipsam laboriosam aliquam et, voluptate deleniti maxime earum cupiditate similique optio in pariatur quae, cum dolores voluptatem itaque voluptates animi veritatis rerum. Sunt consectetur laboriosam architecto tempora unde expedita, veritatis, molestias ipsa, harum dolor ratione! Architecto natus veritatis a magni nobis eos nemo, voluptates deleniti esse expedita alias iusto atque eius sint totam.
+    </div>
+    <!-- end of main -->
+
+    <!-- footer -->
+
+    <footer class="footer">
+            <ul class="f-contact-list">
+                <li class="f-c-list-item fcitem-1">Magda Domonkos</li>
+                <div class="f-c-alignment">
+                     <li class="f-c-list-item fcitem-2">Telefonszám: +36 30 212 5195</li>
+                    <li class="f-c-list-item fcitem-3">Email-cím: magdadomonkos@gmail.com</li>
+                    <li class="f-c-list-item fcitem-4">Telephely: 9735, Csepreg Zrínyi utca, 42.</li>
+                </div>
+            </ul>
+        <div class="copyright">
+            <p class="creater">Created by MD</p>
+            <p class="copyright-text">&copy 2022 Csepreg MD. Minden jog fenntartva.</p>
+        </div>
+    </footer>
+
+    <!-- end of footer -->
+</body>
+</html>

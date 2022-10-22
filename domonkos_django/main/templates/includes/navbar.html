@@ -1,0 +1,10 @@
+{%load static%}
+
+    <nav class="navbar">
+        <ul class="nav-main">
+            <li class="nav-list"><a class="nav {% if page == 1 %}inactive{%endif%}" id="link" href="{% url 'home' %}">Kezdő lap</a></li>
+            <li class="nav-list"><a class="nav {% if page > 1 and page < 3 %}inactive{%endif%}" id="link" href="{% url 'about_page' %}">Rólam</a></li>
+            <li class="nav-list"><a class="nav {% if page > 2 %}inactive{%endif%}" id="link" href="{% url 'contact_page' %}">Elérhetőség</a></li>
+        </ul>
+        <div class="social"><a href="https://www.facebook.com/magda.domonkos" class="social-icon"  target=”_blank” ><i class="fab fa-facebook-f"></i></a></div>
+    </nav>

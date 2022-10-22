@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{%load static%}
+{%block content%}
+
+<div class="about_container">
+
+    <div class="about_title">Rólam</div>
+    <div class="about_content_1_container">
+        <div class="about_content_1">Sokszor mondják, hogy a techikára fogékony embereken hamar meglátszik, mi érdekli őket. Egészen fiatal korom óta foglalkoztat a 
+            számítástechnika és ennek a területnek a professzionális üzését tűztem ki célul. 2019 óta dolgozom mint I.T. tanácsadó, 
+            karbantartó és rendszer üzemeltető a British Councilnak Budapesten. A munkámtól függetenül is azt figyeltem meg, hogy sok esteben
+            dolgoznak cégek olyan infrastruktúrával, ami nem elégíti ki a dolgozók, vagy az ügyfelek igényét: lassú gépek, nehézkes az 
+            együttes dolgozás, ha ugyan arról a fájlról van szó, biztonsági rések, a távmunka komplikáltsága vagy a személyre szabhatóság 
+            hiánya. 2022-ben határoztam el, hogy szeretném minnél több cégnek megadni azt a támogatást és segítséget, ami a 
+            "digitális előrelépését" hozza el.</div>
+        <img src="{% static '/main/img/about.jpg' %}" alt="Rólam" class="about_pic">
+    </div>
+    <div class="about_content_2">Jelenleg mérnökinformatikát tanulok a Széchenyi István Egyetemen Győrben, emelett szabadidőmben saját felhasználásra szervert 
+        üzemeltetek, amin felhőtárhely, streaming szolgáltatás és például ez a weboldal is fut.
+        Mint a nyitó oldalon is szerepel, nem csak tanácsokat adok, hanem a megvalósításban is a vállalat rendekezésére állok. Akár
+        eszközök és szoftverek beüzemeléséről és az azok használatát bemutató oktatásról, akár a számítógépek üzemeltetéséről, azok 
+        frissen tartásáról, vagy egy hiba megoldásáról legyen szó.
+        Ha úgy érzi, hogy lehet jobb az iroda, mint most, keressen bizalommal!</div>
+</div>
+
+{%endblock%}

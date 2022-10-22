@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{%block content%}
+    <!-- main -->
+<div class="cmain_container">
+    <ul class="contact_container">
+        <li class="contact_listelement_1">Elérhetőségek:</li>
+        <li class="contact_listelement_2"><i class="fa-solid fa-phone"></i>&emsp;Mobil: <a href="tel:+36-30-212-5195" class="contact_link">+36 30 212 5195</a></li>
+        <li class="contact_listelement_3"><i class="fa-solid fa-envelope"></i>&emsp;Email: <a href="mailto:info@mdnd-it.hu" class="contact_link">info@mdnd-it.hu</a></li>
+        <li class="contact_listelement_4"><i class="fa-solid fa-city"></i>&emsp;Telephely: <a target="_blank" href="https://www.google.com/maps/place/Csepreg,+Zr%C3%ADnyi+u.+42,+9735/@47.40041,16.7163013,17z/data=!3m1!4b1!4m5!3m4!1s0x476ea5dc83544ab3:0xa7afe539e11d1672!8m2!3d47.40041!4d16.71849?hl=hu" class="contact_link">9735, Csepreg Zrínyi utca, 42.</a></li>
+    </ul>
+    <div  class="map_container"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2700.590943346494!2d16.716301315785348!3d47.40041361019146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476ea5dc83544ab3%3A0xa7afe539e11d1672!2sCsepreg%2C%20Zr%C3%ADnyi%20u.%2042%2C%209735!5e0!3m2!1shu!2shu!4v1665828679282!5m2!1shu!2shu" class="map"></iframe></div>
+</div>
+
+
+
+
+<div class="rc-container">
+    <div class="msg">
+    {%include 'includes/alert.html'%}
+    </div>
+
+    <div class="rf-container">
+        <h3 class="rf-header">Értékelje Munkánkat!</h3>
+            <form class="rf-list" action="" method="POST">
+            {%csrf_token%}
+            <input class="rf-element" type="text" name="r_bname" placeholder="Cégnév (opcionális)">
+            <input class="rf-element" type="text" name="r_sname" placeholder="Vezetéknév" required>
+            <input class="rf-element" type="text" name="r_fname" placeholder="Keresztnév" required>
+            <textarea class="rf-element" name="r_message" rows="4" placeholder="Üzenet... (opcionális)" ></textarea>
+            <div class="star-container">
+                <strong class="txtupper">Értékelés: </strong>
+                <div class="stars">
+                        <input type="radio" name="rating" id="rating10" value="10" required /><label for="rating10" class="fas fa-star" title="10"></label>
+                        <input type="radio" name="rating" id="rating9" value="9" required /><label for="rating9" class="fas fa-star" title="9"></label>
+                        <input type="radio" name="rating" id="rating8" value="8" required /><label for="rating8" class="fas fa-star" title="8"></label>
+                        <input type="radio" name="rating" id="rating7" value="7" required /><label for="rating7" class="fas fa-star" title="7"></label>
+                        <input type="radio" name="rating" id="rating6" value="6" required /><label for="rating6" class="fas fa-star" title="6"></label>
+                        <input type="radio" name="rating" id="rating5" value="5" required /><label for="rating5" class="fas fa-star" title="5"></label>
+                        <input type="radio" name="rating" id="rating4" value="4" required /><label for="rating4" class="fas fa-star" title="4"></label>
+                        <input type="radio" name="rating" id="rating3" value="3" required /><label for="rating3" class="fas fa-star" title="3"></label>
+                        <input type="radio" name="rating" id="rating2" value="2" required /><label for="rating2" class="fas fa-star" title="2"></label>
+                        <input type="radio" name="rating" id="rating1" value="1" required /><label for="rating1" class="fas fa-star" title="1"></label>
+                </div>
+            </div>
+            {{rform.captcha}}
+            <button class="rf-btn" type="submit">Küldés</button>
+            
+        </form>
+
+    </div>
+
+
+    <div class="cf-container">
+        <h3 class="cf-header">Üzenjen nekünk!</h3>
+        <form class="cf-list" action="" method="POST">
+            {%csrf_token%}
+            <input class="cf-element" type="text" name="c_bname" placeholder="Cégnév (opcionális)">
+            <input class="cf-element" type="text" name="c_sname" placeholder="Vezetéknév" required>
+            <input class="cf-element" type="text" name="c_fname" placeholder="Keresztnév" required>
+            <input class="cf-element" type="email" name="c_email" placeholder="Email cím" required>
+            <input class="cf-element" type="text" name="c_pnumber" placeholder="Telefonszám" required>
+            <textarea class="cf-element" name="c_message" rows="4" placeholder="Üzenet..." required></textarea>
+            {{cform.captcha}}
+            <button class="cf-btn" type="submit">Küldés</button>
+        </form>
+    </div>
+</div>
+
+
+<div class="r_out">
+    <div class="r_out_title">Értékelésem ({{allrate}} értékelésből): {{ avg }}/10 <i class="fas fa-star r_out_star"></i></div>
+    {%for rates in rate%}
+
+    <div class="r_out_box">
+        <div class="r_out_date">Dátum: {{rates.date|date:'Y M d'}}</div>
+        <div class="r_out_name">Név:    {{rates.r_sname}} {{rates.r_fname}}</div>
+        <div class="r_out_bname">{% if rates.r_bname != "" %}Cég:{%endif%} {{rates.r_bname}}</div>
+        <div class="r_out_msg">{% if rates.r_message != "" %}Üzenet:<br>&emsp;{%endif%} {{rates.r_message}}</div>
+        <div class="r_out_rates">&emsp;{{rates.rating}}/10</div>
+    </div>
+
+    {%endfor%}
+</div>
+{%endblock%}
