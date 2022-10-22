@@ -25,12 +25,13 @@ SECRET_KEY = 'django-insecure-(qajyesab+^sev5##$k3$a)*9l=i-_s4+w%2snhoogdlep$*7n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.mdnd-it.hu', '127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,9 +46,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -139,3 +140,5 @@ CAPTCHA_FOREGROUND_COLOR= '#cccccc'
 
 #security
 
+SECURITY_CONT_TYPE_NOSNIFF=True
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
